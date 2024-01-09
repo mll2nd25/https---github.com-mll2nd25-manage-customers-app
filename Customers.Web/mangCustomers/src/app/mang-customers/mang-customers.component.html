@@ -1,0 +1,94 @@
+<div class="container">
+    <h1>Manage Customers</h1>
+    <div class="user-input-group content-section">
+        <div>
+            <input type="text" id="txt_Customer" [(ngModel)]="customer.firstName" required class="user-input-text" placeholder="First Name" />
+        </div>
+        <div>
+            <input type="text" id="txt_Customer"  [(ngModel)]="customer.lastName" required class="user-input-text" placeholder="Last Name" />
+        </div>
+        <div>
+            <input type="text" id="txt_Customer"  [(ngModel)]="customer.email" placeholder="Email Address" />
+        </div>
+        <div>
+            <button type="button" class="btn btn-primary" (click)="create(customer)">
+                <i class="bi bi-person-add"></i>
+                <span class="icon-text">Add Customer</span>
+            </button>
+        </div>
+    </div>
+    <div>
+        <table class="table table-striped">
+            <thead>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Created</th>
+                <th scope="col">Modified</th>
+                <th scope="col">Active</th>
+                <th scope="col">Edit</th>
+            </thead>
+            <tbody>
+                <tr id="{{'row_' + c.customerId}}" [ngStyle]="{'font-weight': selectedRowIndex == c.customerId ? 'bold' : '100'}" (click)="highlight(c.customerId)" *ngFor="let c of customers">
+                    <td>
+                        <span id="{{'ro_' + c.customerId}}" class="user-readonly-info">
+                            {{ c.firstName }}
+                        </span>
+                        <input type="text" id="{{'edit_' + c.customerId}}" [(ngModel)]="c.firstName"
+                            class="user-input-text user-edit-info" placeholder="First Name" />
+                    </td>
+                    <td>
+                        <span id="{{'ro_' + c.customerId}}" class="user-readonly-info">
+                            {{ c.lastName }}
+                        </span>
+                        <input type="text" id="{{'edit_' + c.customerId}}" [(ngModel)]="c.lastName"
+                            class="user-input-text user-edit-info" placeholder="Last Name" />
+                    </td>
+                    <td>
+                        <span id="{{'ro_' + c.customerId}}" class="user-readonly-info">
+                            {{ c.email }}
+                        </span>
+                        <input type="text" id="{{'edit_' + c.customerId}}" [(ngModel)]="c.email"
+                            class="user-input-text user-edit-info" placeholder="Email Address" />
+                    </td>
+                    <td>{{ c.createdDTStr }}</td>
+                    <td>{{ c.updatedDTStr }}</td>
+                    <td>
+                        <div id="{{'ro_' + c.customerId}}" class="user-readonly-info">
+                            <span *ngIf="c.isActive" style="display: block;">
+                                <i class="bi bi-person-check" style="color: green; font-size: 1.5em;"></i>
+                            </span>
+                            <span *ngIf="!c.isActive" style="display: block;">
+                                <i class="bi bi-person-x" style="color: red; font-size: 1.5em;"></i>
+                            </span>
+                        </div>
+                        <label id="{{'edit_' + c.customerId}}" class="switch user-edit-info">
+                            <input type="checkbox" [(ngModel)]="c.isActive">
+                            <span class="slider round"></span>
+                        </label>
+                    </td>
+                    <td>
+                        <div id="{{'ro_' + c.customerId}}" class="user-readonly-info">
+                            <button type="button" class="btn btn-light" (click)="editCustomer(c.customerId)">
+                                <i class="bi bi-pencil"></i>
+                                <span class="icon-text">Edit</span>
+                            </button>
+                        </div>
+                        <div id="{{'edit_' + c.customerId}}" class="user-edit-info">
+                            
+                            <button type="button" class="btn btn-success" (click)="edit(c.customerId, c)">
+                                <i class="bi bi-floppy"></i>
+                                <span class="icon-text">Save</span>
+                            </button>
+                            &nbsp;
+                            <button type="button" class="btn btn-danger" (click)="cancel(c.customerId)">
+                                <i class="bi bi-x-lg"></i>
+                                <span class="icon-text">Cancel</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

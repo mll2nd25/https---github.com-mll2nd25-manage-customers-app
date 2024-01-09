@@ -1,0 +1,34 @@
+.user-input-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 2em;
+}
+
+.user-input-group div {
+
+  padding-right: 1em;
+}
+
+.user-edit-info {
+  display: none;
+}
+
+.user-readonly-info {
+
+  display: block;
+}
+
+.highlight {
+  background-color: yellow;
+}
+
+.css-class-1{
+
+  color: #1E90FF;
+}
+
+.css-class-2{
+
+  color: inherit;
+}
